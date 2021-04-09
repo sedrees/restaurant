@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Domine:wght@400;700&display=swap');
+
+html, body {
+    height:100%;
+    margin:0;
+}
+
+html {
+    background: url(img/bg.jpg) no-repeat fixed;
+    background-position-x:center;
+    background-position-y:-6rem;
+    background-size:2300px;
+    font-family:'Domine', Georgia, 'Times New Roman', Times, serif;
+    font-size: min(max(1rem, 4vw), 22px);
+    color:#1A1A1A;
+}
+
+#page {
+    width:100%;
+    height:100%;
+    display:grid;
+    grid-template-columns: repeat(16, [col-start] 1fr);
+    gap:20px;
+}
+
+#sidebar {
+    background-color:#E8E8E6;
+    grid-column: col-start / span 3;
+}
+
+#logo {
+    margin:5% auto 0;
+    width:90%;
+    height:165px;
+    background:url(img/sbslogopaths.svg) no-repeat center center;
+    background-size:contain;
+}
+
+nav {
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    font-family:'Barlow Condensed', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size:min(max(2rem, 6vw), 52px);
+    text-transform:uppercase;
+    margin-top:3rem;
+    height:14rem;
+}
+
+nav a {
+    color:#1A1A1A;
+    text-decoration:none;
+    padding-left:2rem;
+}
+
+.accent {
+    color:#DD5322;
+}
+
+#content {
+    background-color:#E8E8E6;
+    grid-column: 6 / span 9;
+    margin:8rem 0 4rem;
+    padding:2rem;
+}
+
+h1 {
+    font-size:min(max(3rem, 6vw), 62px);
+    text-transform:lowercase;
+    margin:0;
+}
+
+h2 {
+    font-size:min(max(1.5rem, 6vw), 26px);
+    font-weight:400;
+    margin:0;
+}
+
+p {
+    font-size:min(max(1.125rem, 6vw), 22px);
+}
+
+em {
+    font-style:normal;
+    font-weight:800;
+}
