@@ -1,18 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Domine:wght@400;700&display=swap');
 
 html, body {
-    height:100%;
+    height:100vh;
     margin:0;
 }
 
 html {
-    background: url(img/bg.jpg) no-repeat fixed;
-    background-position-x:center;
-    background-position-y:-6rem;
-    background-size:2300px;
+    background: url(img/bg-small.jpg) no-repeat fixed;
+    background-position:center center;
     font-family:'Domine', Georgia, 'Times New Roman', Times, serif;
     font-size: min(max(1rem, 4vw), 22px);
     color:#1A1A1A;
+    line-height:1.4;
 }
 
 #page {
@@ -20,37 +19,37 @@ html {
     height:100%;
     display:grid;
     grid-template-columns: repeat(16, [col-start] 1fr);
-    gap:20px;
 }
 
-#sidebar {
-    background-color:#E8E8E6;
-    grid-column: col-start / span 3;
+#nav-container {
+    background-color:#EFEFEC;
+    grid-column: col-start / col-end;
 }
 
 #logo {
     margin:5% auto 0;
-    width:90%;
-    height:165px;
-    background:url(img/sbslogopaths.svg) no-repeat center center;
+    background:url(img/sbslogo.svg) no-repeat center center;
     background-size:contain;
+    min-height:70px;
 }
 
 nav {
     display:flex;
-    flex-direction:column;
     justify-content: space-between;
     font-family:'Barlow Condensed', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size:min(max(2rem, 6vw), 52px);
     text-transform:uppercase;
-    margin-top:3rem;
-    height:14rem;
 }
 
 nav a {
     color:#1A1A1A;
     text-decoration:none;
-    padding-left:2rem;
+    padding:0.25rem 0.5rem;
+    transition: color 0.5s;
+}
+
+nav a:hover {
+    color:#808080;
 }
 
 .accent {
@@ -58,29 +57,117 @@ nav a {
 }
 
 #content {
-    background-color:#E8E8E6;
-    grid-column: 6 / span 9;
-    margin:8rem 0 4rem;
-    padding:2rem;
+    background-color:#EFEFEC;
+    grid-column: 2 / span 14;
+    margin:1rem 0;
+    padding:1rem;
+}
+
+#content p {
+    margin-top:1.5rem;
 }
 
 h1 {
-    font-size:min(max(3rem, 6vw), 62px);
+    font-size:32px;
     text-transform:lowercase;
     margin:0;
+    line-height:1.2;
 }
 
 h2 {
-    font-size:min(max(1.5rem, 6vw), 26px);
+    font-size:18px;
     font-weight:400;
     margin:0;
 }
 
 p {
-    font-size:min(max(1.125rem, 6vw), 22px);
+    font-size:16px;
 }
 
 em {
     font-style:normal;
     font-weight:800;
+}
+
+@media screen and (min-width:500px) {
+    #logo {
+        height:80px;
+    }
+    nav {
+        max-width:85%;
+        margin:0 auto;
+    }
+}
+@media screen and (min-width:760px) {
+    html {
+        background-position-y:-6rem;
+        background-size:2300px;
+        line-height:1.4;
+        background-image:url(img/bg.jpg);
+    }
+    #page {
+        gap:20px;
+    }
+    #nav-container{
+        grid-column: col-start / span 4;
+    }
+    #logo {
+        width:75%;
+        height:100px;
+    }
+    nav {
+        flex-direction:column;
+        margin-top:3rem;
+        height:12rem;
+    }
+    nav a {
+        padding:0.5rem;
+    }
+    #content {
+        grid-column: 6 / span 10;
+        padding:2rem 4rem 2rem 3rem;
+    }
+    h1 {
+        font-size:48px;
+    }
+    h2 {
+        font-size:24px;
+    }
+    p {
+        font-size:18px;
+    }
+}
+
+@media screen and (min-width:1366px) {
+    #nav-container {
+        grid-column: col-start / span 3;
+    }
+    #logo {
+        height:165px;
+    }
+    #content {
+        grid-column: 6 / span 9;
+        margin:4rem 0;
+    }
+    nav a {
+        padding-left:1rem;
+    }
+    h1 {
+        font-size:62px;
+    }
+    h2 {
+        font-size:28px;
+    }
+    p {
+        font-size:22px;
+    }
+}
+
+@media screen and (min-width:1920px) {
+    nav a {
+        padding-left:2rem;
+    }
+    #content {
+        margin:8rem 0 4rem;
+    }
 }
