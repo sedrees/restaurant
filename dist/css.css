@@ -63,7 +63,7 @@ nav a:hover {
     padding:1rem;
 }
 
-#content p {
+#home p {
     margin-top:1.5rem;
 }
 
@@ -75,7 +75,7 @@ h1 {
 }
 
 h2 {
-    font-size:18px;
+    font-size:20px;
     font-weight:400;
     margin:0;
 }
@@ -87,6 +87,46 @@ p {
 em {
     font-style:normal;
     font-weight:800;
+}
+
+li {
+    list-style:none;
+}
+
+ul, ul h3, ul h4 {
+    margin:0;
+    padding:0;
+}
+
+.menu li {
+    display:flex;
+    justify-content:space-between;
+    margin:0.75rem 0;
+}
+
+.menu h4, .menu-price {
+    color:#555;
+}
+
+.menu-section {
+    font-size:26px;
+    font-weight:700;
+    margin:1rem 0;
+}
+
+h3, .menu-price {
+    font-size:20px;
+}
+
+h4 {
+    font-size:16px;
+    font-weight:400;
+}
+
+#map {
+    max-width:90%;
+    border:1px solid #555;
+    margin-top:2rem;
 }
 
 @media screen and (min-width:500px) {
@@ -161,6 +201,16 @@ em {
     p {
         font-size:22px;
     }
+    #menu-container {
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:space-between;
+    }
+    #deets {
+        display:flex;
+        justify-content:space-between;
+        max-width:95%;
+    }
 }
 
 @media screen and (min-width:1920px) {
@@ -169,5 +219,11 @@ em {
     }
     #content {
         margin:8rem 0 4rem;
+    }
+    .menu {
+        min-width:35%;
+    }
+    #deets {
+        max-width:75%;
     }
 }
