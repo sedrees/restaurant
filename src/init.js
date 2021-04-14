@@ -18,12 +18,12 @@ const loadHTML = () => {
     const menuLink = document.createElement('a');
     const contLink = document.createElement('a');
 
-    homeLink.setAttribute('href', 'index.html');
+    //homeLink.setAttribute('href', 'index.html');
     homeLink.innerText = "Home";
     homeLink.setAttribute('class', 'accent');
-    menuLink.setAttribute('href', 'menu.html');
+    //menuLink.setAttribute('href', 'menu.html');
     menuLink.innerText = "Menu";
-    contLink.setAttribute('href', 'contact.html');
+    //contLink.setAttribute('href', 'contact.html');
     contLink.innerText = "Contact";
 
     navLinks.appendChild(homeLink);
@@ -68,6 +68,7 @@ const loadMenu = () => {
     const container = document.createElement('div');
     container.setAttribute('id', 'menu-container');
 
+    // Rolls
     const rolls = document.createElement('ul');
     rolls.classList.add('menu');
 
@@ -77,10 +78,93 @@ const loadMenu = () => {
 
     rolls.appendChild(rollsTitle);
 
-    //let's make menu objects?
-    const rollMaker = (rollName, ing1, ing2, ing3, ing4, ing5) => {
-        
+    class Roll {
+        constructor(rollName, price, ...ingredients) {
+            this.name = rollName;
+            this.price = price;
+            this.ingredients = ingredients;
+        }
+        display() {
+            const seaweed = document.createElement('li');
+
+            const rice = document.createElement('div');
+            rice.classList.add('menu-desc');
+
+            const rollTitle = document.createElement('h3');
+            rollTitle.innerHTML = this.name;
+
+            const rollDesc = document.createElement('h4');
+            rollDesc.innerText = this.ingredients;
+
+            const wasabi = document.createElement('div');
+            wasabi.classList.add('menu-price');
+            wasabi.innerText = this.price;
+
+            rice.appendChild(rollTitle);
+            rice.appendChild(rollDesc);
+
+            seaweed.appendChild(rice);
+            seaweed.appendChild(wasabi);
+
+            rolls.appendChild(seaweed);
+        }
     }
+
+    new Roll('double roll', 9, ['tuna', ' yellowtail', ' scallions' , ' roe', ' ponzu sauce']).display();
+    new Roll('midori roll', 7, ['tuna', ' salmon', ' avocado', ' sesame seeds']).display();
+    new Roll('caterpillar roll', 8, ['eel', ' cucumber', ' avocado', ' ponzu sauce']).display();
+    new Roll('triple x', 9, ['salmon', ' tuna', ' whitefish', ' white sauce']).display();
+    new Roll('phoenix roll', 9, ['spicy tuna', ' roe', ' tempura']).display();
+    new Roll('beauty alaska roll', 10, ['spicy salmon', ' cucumber', ' avocado', ' scallions']).display();
+
+    container.appendChild(rolls);
+
+    // Nigiri
+    const nigiri = document.createElement('ul');
+    nigiri.classList.add('menu');
+
+    const nigiriTitle = document.createElement('h2');
+    nigiriTitle.innerHTML = 'nigiri selection';
+    nigiriTitle.classList.add('menu-section');
+
+    nigiri.appendChild(nigiriTitle);
+
+    class Side {
+        constructor(name, price) {
+            this.name = name;
+            this.price = price;
+        }
+        display(section) {
+            const seaweed = document.createElement('li');
+
+            const rice = document.createElement('div');
+            rice.classList.add('menu-desc');
+            const sideTitle = document.createElement('h3');
+            sideTitle.innerHTML = this.name;
+            rice.appendChild(sideTitle);
+    
+            const wasabi = document.createElement('div');
+            wasabi.classList.add('menu-price');
+            wasabi.innerHTML = this.price;
+    
+            rice.appendChild(wasabi);
+    
+            seaweed.appendChild(rice);
+            section.appendChild(seaweed);
+        }
+    }
+    new Side('tuna', '2').display(nigiri);
+    new Side('shrimp', '1').display(nigiri);
+    new Side('salmon', '2').display(nigiri);
+    new Side('smoked salmon', '2').display(nigiri);
+    new Side('octopus', '1').display(nigiri);
+    new Side('yellowtail', '2').display(nigiri);
+    new Side('scallop', '3').display(nigiri);
+    new Side('eel', '2').display(nigiri);
+    
+    container.appendChild(nigiri);
+    content.appendChild(container);
+
 };
 
 export { loadHTML, loadHome, loadMenu }
