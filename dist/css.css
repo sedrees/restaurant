@@ -213,15 +213,18 @@ h4 {
     }
 }
 
+@media screen and (min-width:1600px) {
+    .menu {
+        min-width:35%;
+    }
+}
+
 @media screen and (min-width:1920px) {
     nav a {
         padding-left:2rem;
     }
     #content {
         margin:8rem 0 4rem;
-    }
-    .menu {
-        min-width:35%;
     }
     #deets {
         max-width:75%;

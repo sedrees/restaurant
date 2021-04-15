@@ -14,21 +14,10 @@ const loadHTML = () => {
     nav.appendChild(logo);
 
     const navLinks = document.createElement('nav');
-    const homeLink = document.createElement('a');
-    const menuLink = document.createElement('a');
-    const contLink = document.createElement('a');
 
-    //homeLink.setAttribute('href', 'index.html');
-    homeLink.innerText = "Home";
-    homeLink.setAttribute('class', 'accent');
-    //menuLink.setAttribute('href', 'menu.html');
-    menuLink.innerText = "Menu";
-    //contLink.setAttribute('href', 'contact.html');
-    contLink.innerText = "Contact";
-
-    navLinks.appendChild(homeLink);
-    navLinks.appendChild(menuLink);
-    navLinks.appendChild(contLink);
+    navLinks.appendChild(navigation.create('Home', true));
+    navLinks.appendChild(navigation.create('Menu', false));
+    navLinks.appendChild(navigation.create('Contact', false));
 
     nav.appendChild(navLinks);
 
@@ -39,7 +28,29 @@ const loadHTML = () => {
     root.appendChild(content);
 };
 
-const loadHome =  () => {
+const navigation = (() => {
+    let current;
+    const create = (page, isCurrent) => {
+        const newLink = document.createElement('a');
+        newLink.innerText = page;
+        newLink.setAttribute('href', '#');
+        if (isCurrent) {
+            newLink.classList.add('accent');
+            current = newLink;
+        }
+        return newLink;
+    }
+    const toggle = (link) => {
+        if (link != current) {
+            link.classList.add('accent');
+            current.classList.remove('accent');
+            current = link;
+        }
+    }
+    return {create,toggle};
+})();
+
+const loadHome = () => {
     const content = document.querySelector('#content');
     content.innerHTML = '';
 
@@ -147,9 +158,9 @@ const loadMenu = () => {
             wasabi.classList.add('menu-price');
             wasabi.innerHTML = this.price;
     
-            rice.appendChild(wasabi);
-    
             seaweed.appendChild(rice);
+            seaweed.appendChild(wasabi);
+            
             section.appendChild(seaweed);
         }
     }
@@ -163,8 +174,66 @@ const loadMenu = () => {
     new Side('eel', '2').display(nigiri);
     
     container.appendChild(nigiri);
-    content.appendChild(container);
 
+    // Sides
+    const sides = document.createElement('ul');
+    sides.classList.add('menu');
+
+    const sideTitle = document.createElement('h2');
+    sideTitle.innerHTML = 'starters &amp; sides';
+    sideTitle.classList.add('menu-section');
+
+    sides.appendChild(sideTitle);
+
+    new Side('garden salad', '2').display(sides);
+    new Side('gyoza', '4').display(sides);
+    new Side('tuna tataki', '7').display(sides);
+    new Side('miso soup', '2').display(sides);
+    new Side('fried soft shell crab', '7').display(sides);
+
+    container.appendChild(sides);
+    content.appendChild(container);
 };
 
-export { loadHTML, loadHome, loadMenu }
+const loadCont = () => {
+    const content = document.querySelector('#content');
+    content.innerHTML = '';
+
+    const deets = document.createElement('div');
+    deets.setAttribute('id', 'deets');
+
+    class Detail {
+        constructor(title, content) {
+            this.title = title;
+            this.content = content;
+        }
+        display() {
+            const wrapper= document.createElement('div');
+            wrapper.classList.add('deet');
+
+            const deetTitle = document.createElement('h2');
+            deetTitle.classList.add('menu-section');
+            deetTitle.innerHTML = this.title;
+            wrapper.appendChild(deetTitle);
+
+            const deetDeet = document.createElement('p');
+            deetDeet.innerHTML = this.content;
+            wrapper.appendChild(deetDeet);
+
+            deets.appendChild(wrapper);
+        }
+    }
+
+    new Detail('find us at', '012 High Street <br> A Nice Place <br> AIB 2C3').display();
+    new Detail('call us at', '01234567890').display();
+    new Detail('email us at', 'sushi@example.com').display();
+
+    const map = document.createElement('img');
+    map.setAttribute('src', 'img/wearehere.png');
+    map.setAttribute('alt', 'Map showing high street location');
+
+    content.appendChild(deets);
+    content.appendChild(map);
+};
+
+export { loadHTML, loadHome, loadMenu, loadCont, navigation }
