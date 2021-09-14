@@ -1,3 +1,5 @@
+// This file is meant to demonstrate proficiency in generating HTML with JS from scratch - obviously not a good practice overall however.
+
 const loadHTML = () => {
     const root = document.querySelector('#page');
 
@@ -17,6 +19,7 @@ const loadHTML = () => {
 
     navLinks.appendChild(navigation.create('Home', true));
     navLinks.appendChild(navigation.create('Menu', false));
+    navLinks.appendChild(navigation.create('Order', false));
     navLinks.appendChild(navigation.create('Contact', false));
 
     nav.appendChild(navLinks);
@@ -70,6 +73,21 @@ const loadHome = () => {
     content.appendChild(subtitle);
     content.appendChild(para1);
     content.appendChild(para2);
+};
+
+const loadOrder = () => {
+    const content = document.querySelector('#content');
+    content.innerHTML = '';
+
+    const pfcontainer = document.createElement('div');
+    pfcontainer.setAttribute('data-paperform-id', 'sbsorder');
+
+    const pfscript = document.createElement('script');
+    pfscript.src = 'https://paperform.co/__embed.min.js';
+    
+    content.appendChild(pfcontainer);
+    document.body.appendChild(pfscript);
+       
 };
 
 const loadMenu = () => {
@@ -236,4 +254,4 @@ const loadCont = () => {
     content.appendChild(map);
 };
 
-export { loadHTML, loadHome, loadMenu, loadCont, navigation }
+export { loadHTML, loadHome, loadOrder, loadMenu, loadCont, navigation }

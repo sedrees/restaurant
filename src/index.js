@@ -1,4 +1,4 @@
-import {loadHTML, loadHome, loadMenu, loadCont, navigation} from './init'
+import {loadHTML, loadHome, loadMenu, loadOrder, loadCont, navigation} from './init'
 
 loadHTML();
 loadHome();
@@ -15,6 +15,9 @@ nav.forEach((link) => {
                 break;
             case 'Menu':
                 loadMenu();
+                break;
+            case 'Order':
+                loadOrder();
                 break;
             case 'Contact':
                 loadCont();

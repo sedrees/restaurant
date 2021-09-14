@@ -230,3 +230,9 @@ h4 {
         max-width:75%;
     }
 }
+
+@media screen and (min-width:2000px) {
+    html {
+        background-size:auto;
+    }
+}
